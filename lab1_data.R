@@ -13,8 +13,9 @@ EPI_data <- EPI_data[-2, ]
 
 attach(EPI_data)
 fitted(EPI_data) 	# launches a simple data editor
-EPI
+DALY
 E <- as.numeric(as.character(EPI))
+#E <- as.numeric(as.character(DALY))
 E <- E[!is.na(E)]
 
 summary(E)
@@ -23,6 +24,7 @@ stem(as.numeric(E))
 
 # Histogram
 hist(E, seq(30., 95., 1.0), prob=TRUE)
+#hist(E, seq(0, 95, 0.5), prob=TRUE)
 lines(density(E,na.rm=TRUE,bw=1.))
 
 #Cumulative density function
@@ -38,4 +40,5 @@ qqplot(qt(ppoints(250), df = 5), x, xlab = "Q-Q plot for t dsn")
 
 
 #Box Plot
-boxplot(E, as.numeric(as.character(DALY)))
+boxplot(E, as.numeric(as.character(WATER_H)))
+help(boxplot)

@@ -1,21 +1,44 @@
-install.packages("csv")
-EPI_data = read.csv("EPI Data/2010EPI_data.csv")
+EPI_data = read.csv("EPI Data/2010EPI_data.csv", header = FALSE)
 
 #or
 #install.packages("xlsx")
 #EPI_data <- read.xlsx("EPI Data/2010EPI_data.xlsx")
 # Note: replace default data frame name – cannot start with numbers!
+
 View(EPI_data)
-#
+colnames(EPI_data) <- EPI_data[2, ]
 
-#attach(EPI_data) 	# sets the ‘default’ object
-#fix(EPI_data) 	# launches a simple data editor
-#EPI_data 			# prints out values EPI_data$EPI
-# tf <- is.na(EPI_data) # records True values if the value is NA
-# E <- EPI_data[!tf] # filters out NA values, new array
+# Remove the second row (which is now the header)
+EPI_data <- EPI_data[-2, ]
 
-summary(EPI_data)
-fivenum(EPI_data)
-help(fivenum)
-stem(EPI_data)
+attach(EPI_data)
+fitted(EPI_data) 	# launches a simple data editor
+DALY
+E <- as.numeric(as.character(EPI))
+#E <- as.numeric(as.character(DALY))
+E <- E[!is.na(E)]
 
+summary(E)
+fivenum(as.numeric(E))
+stem(as.numeric(E))
+
+# Histogram
+hist(E, seq(30., 95., 1.0), prob=TRUE)
+#hist(E, seq(0, 95, 0.5), prob=TRUE)
+lines(density(E,na.rm=TRUE,bw=1.))
+
+#Cumulative density function
+plot(ecdf(E), do.points=FALSE, verticals=TRUE)
+
+#QQ
+par(pty="s")
+qqnorm(E)#; qqline(E)
+
+#QQ fo T Dens
+x<-seq(30,95,1)
+qqplot(qt(ppoints(250), df = 5), x, xlab = "Q-Q plot for t dsn")
+
+
+#Box Plot
+boxplot(E, as.numeric(as.character(WATER_H)))
+help(boxplot)

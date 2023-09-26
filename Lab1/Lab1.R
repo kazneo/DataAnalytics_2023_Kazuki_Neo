@@ -2,7 +2,7 @@ EPI_data = read.csv("../EPI Data/2010EPI_data.csv", header = FALSE)
 
 #or
 #install.packages("xlsx")
-#EPI_data <- read.xlsx("EPI Data/2010EPI_data.xlsx")
+#EPI_data <- read.xlsx("../EPI Data/2010EPI_data.xlsx")
 # Note: replace default data frame name – cannot start with numbers!
 
 View(EPI_data)

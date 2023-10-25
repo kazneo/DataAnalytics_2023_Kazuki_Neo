@@ -1,4 +1,4 @@
-EPI_data = read.csv("../EPI Data/2010EPI_data.csv", header = FALSE)
+EPI_data = read.csv("../Data/2010EPI_data.csv", header = FALSE)
 
 #or
 #install.packages("xlsx")
